@@ -38,6 +38,10 @@ group :development, :test do
 end
 
 group :development do
+  gem 'jquery-ui-rails'
+end
+
+group :development do
   gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 end
 
