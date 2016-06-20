@@ -1,8 +1,25 @@
 Rails.application.routes.draw do
-  resources :orders
-  resources :line_items
-  resources :carts
-  get 'store/index'
+  get 'admin' => 'admin#index'
+  controller :sessions do
+    get 'login' => :new
+    post 'login' => :create
+    delete 'logout' => :destroy
+  end
+
+
+  get 'sessions/create'
+
+  get 'sessions/destroy'
+
+
+  resources :users
+  scope '(:locale)' do
+    resources :orders
+    resources :line_items
+    resources :carts
+    get 'store/index'
+    root 'store#index', as: 'store', via: :all
+  end
 
 
 
@@ -13,7 +30,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'store#index', as: 'store'
+
   # root 'welcome#index'
 
   # Example of regular route:
